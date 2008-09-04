@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin
+   id="net.sf.geclipse.ide.projectmanager"
+   name="net.sf.geclipse.ide.projectmanager"
+   version="1.0.0"
+>
+   <requires>
+      <import plugin="org.eclipse.core.resources"/>
+      <import plugin="org.eclipse.platform"/>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.core.runtime.compatibility"/>
+      <import plugin="org.eclipse.ui"/>
+   </requires>
+   <extension
+         id="net.sf.geclipse.ide.projectmanager.EbuildNature"
+         name="net.sf.geclipse.ide.projectmanager.EbuildNature"
+         point="org.eclipse.core.resources.natures">
+      <runtime> 
+      	<run class="net.sf.geclipse.ide.projectmanager.EbuildNature"/>
+      </runtime>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="net.sf.geclipse.ide.projectmanager.newEbuildWizards"
+            name="GEclipse"
+            >
+      </category>
+      <wizard
+            canFinishEarly="false"
+            category="net.sf.geclipse.ide.projectmanager.newEbuildWizards"
+            class="net.sf.geclipse.ide.projectmanager.wizards.StartNewEbuildCategoryWizard"
+            hasPages="true"
+            icon="icons/glogo-tiny.png"
+            id="net.sf.geclipse.ide.projectmanager.NewCategoryWizard"
+            name="New Ebuild Category"
+            project="true">
+      </wizard>
+      <wizard
+            canFinishEarly="false"
+            category="org.eclipse.ui.Basic"
+            class="net.sf.geclipse.ide.projectmanager.wizards.StartNewEbuildWizard"
+            hasPages="true"
+            icon="icons/glogo-tiny.png"
+            id="net.sf.geclipse.ide.projectmanager.NewEbuildWizard"
+            name="New Ebuild">
+         <selection
+               class="org.eclipse.core.resources.IResource"
+               name="net.sf.geclipse.ide.projectmanager.EbuildCategory">
+         </selection>
+      </wizard>
+   </extension>
+   <extension
+         id="net.sf.geclipse.ide.projectmanager.EbuildCreationPopup"
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            id="net.sf.geclipse.ide.projectmanager.EbuildCreationPopup.contribution.object"
+            objectClass="org.eclipse.core.resources.IProject">
+         <filter
+               name="projectNature"
+               value="net.sf.geclipse.ide.projectmanager.EbuildNature">
+         </filter>
+         <action
+               class="net.sf.geclipse.ide.projectmanager.actions.NewEbuildActionDelegate"
+               icon="icons/glogo-tiny.png"
+               id="net.sf.geclipse.ide.projectmanager.EbuildCreationPopup.action"
+               label="Create new ebuild"
+               menubarPath="additions">
+         </action>
+      </objectContribution>
+   </extension>
+   <!--<extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            description="Creates a new ebuild"
+            id="net.sf.geclipse.ide.projectmanager.EbuildCreationActionSet"
+            label="Creates a new ebuild"
+            visible="true">
+         <action
+               class="net.sf.geclipse.ide.projectmanager.actions.NewEbuildAction"
+               icon="icons/glogo-tiny.png"
+               id="net.sf.geclipse.ide.projectmanager.actions.EbuildCreationAction"
+               label="New Ebuild"
+               style="push"
+               toolbarPath="org.eclipse.ui.workbench.file/new.ext"
+               tooltip="Creates a new ebuild">
+         </action>
+      </actionSet>
+   </extension>-->
+   
+
+</plugin>
