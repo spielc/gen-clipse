@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Debug Core Plug-in
+Bundle-SymbolicName: net.sf.geclipse.debug.core;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: net.sf.geclipse.debug.core.Activator
+Bundle-Vendor: net.sf.geclipse.debug.core
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.debug.core,
+ org.eclipse.core.resources,
+ org.eclipse.ui.console
+Eclipse-LazyStart: true

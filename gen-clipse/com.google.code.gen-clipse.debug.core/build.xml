@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!-- ====================================================================== 
+     Jan 14, 2007 11:42:03 AM                                                        
+
+     ant build.xml file for net.sf.geclipse.debug.core plugin
+     
+     author:Christoph Spielmann
+                   
+                                                                     
+     ====================================================================== -->
+<project name="com.google.code.gen-clipse.debug.core" default="com.google.code.gen-clipse.debug.core.plugin" >
+	
+    <description>
+            description
+    </description>
+	
+	<property name="com.google.code.gen-clipse.debug.core.srcdir" value="${com.google.code.gen-clipse.debug.core.path}/src"/>
+	<property name="com.google.code.gen-clipse.debug.core.bindir" value="${com.google.code.gen-clipse.debug.core.path}/bin"/>
+	<property name="com.google.code.gen-clipse.debug.core.distdir" value="${com.google.code.gen-clipse.debug.core.path}/dist"/>
+	<property name="com.google.code.gen-clipse.debug.core.docdir" value="${com.google.code.gen-clipse.debug.core.path}/doc"/>
+	
+	<!-- ================================= 
+          target: plugin-compiles com.google.code.gen-clipse.debug.core-plugin
+         ================================= -->
+    <target name="com.google.code.gen-clipse.debug.core.plugin" depends="com.google.code.gen-clipse.debug.core.depends" description="compile the com.google.code.gen-clipse.debug.core-plugin" >
+        <javac destdir="${com.google.code.gen-clipse.debug.core.bindir}" srcdir="${com.google.code.gen-clipse.debug.core.srcdir}" target="1.5">
+        	<classpath>
+        		<pathelement location="${com.google.code.gen-clipse.debug.core.bindir}"/>
+        		<fileset dir="${com.google.code.gen-clipse.ide.editor.eclipsehome}/plugins">
+        			<include name="org.eclipse.debug.core_*.jar"/>
+        			<include name="org.eclipse.osgi_*.jar"/>
+        			<include name="org.eclipse.core.resources_*.jar"/>
+        			<include name="org.eclipse.equinox.common_*.jar"/>
+        			<include name="org.eclipse.core.runtime_*.jar"/>
+        			<include name="org.eclipse.core.jobs_*.jar"/>
+        		</fileset>
+        	</classpath>
+        </javac>
+    </target>
+
+    <!-- - - - - - - - - - - - - - - - - - 
+          target: depends-prepares build-environment                      
+         - - - - - - - - - - - - - - - - - -->
+    <target name="com.google.code.gen-clipse.debug.core.depends">
+    	<delete dir="${com.google.code.gen-clipse.debug.core.bindir}"></delete>
+    	<delete dir="${com.google.code.gen-clipse.debug.core.distdir}"></delete>
+    	<mkdir dir="${com.google.code.gen-clipse.debug.core.bindir}"/>
+    	<mkdir dir="${com.google.code.gen-clipse.debug.core.distdir}"/>
+    </target>
+	<!-- - - - - - - - - - - - - - - - - - 
+	          target: jar-creates jar file for com.google.code.gen-clipse.debug.core                      
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="com.google.code.gen-clipse.debug.core.jar" depends="com.google.code.gen-clipse.debug.core.plugin">
+		<copy todir="${com.google.code.gen-clipse.debug.core.distdir}" filtering="on">
+			<fileset dir="${com.google.code.gen-clipse.debug.core.bindir}" excludes="**/*.java"/>
+		</copy>
+		<copy file="${com.google.code.gen-clipse.debug.core.path}/plugin.xml" tofile="${com.google.code.gen-clipse.debug.core.distdir}/plugin.xml">
+		</copy>
+		<jar destfile="${com.google.code.gen-clipse.debug.core.distdir}/com.google.code.gen-clipse.debug.core_${genclipse.version}.jar" basedir="${com.google.code.gen-clipse.debug.core.distdir}" manifest="${com.google.code.gen-clipse.debug.core.path}/meta-inf/manifest.mf"></jar>
+	</target>
+</project>
