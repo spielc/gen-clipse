@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<!-- ====================================================================== 
+     Jan 14, 2007 11:42:03 AM                                                        
+
+     ant build.xml file for net.sf.geclipse.debug.ui plugin
+     
+     author:Christoph
+                   
+                                                                     
+     ====================================================================== -->
+<project name="com.google.code.gen-clipse.debug.ui" default="com.google.code.gen-clipse.debug.ui.plugin" >
+	
+    <description>
+            description
+    </description>
+	
+	<property name="com.google.code.gen-clipse.debug.ui.srcdir" value="${com.google.code.gen-clipse.debug.ui.path}/src"/>
+	<property name="com.google.code.gen-clipse.debug.ui.bindir" value="${com.google.code.gen-clipse.debug.ui.path}/bin"/>
+	<property name="com.google.code.gen-clipse.debug.ui.distdir" value="${com.google.code.gen-clipse.debug.ui.path}/dist"/>
+	<property name="com.google.code.gen-clipse.debug.ui.docdir" value="${com.google.code.gen-clipse.debug.ui.path}/doc"/>
+	<property name="com.google.code.gen-clipse.debug.ui.eclipsehome" value="/root/eclipse"/>
+	<property name="com.google.code.gen-clipse.debug.ui.geclipse-debug-core" value="${com.google.code.gen-clipse.debug.core.path}/bin"/>
+
+	<!-- ================================= 
+          target: plugin-compiles com.google.code.gen-clipse.debug.ui-plugin
+         ================================= -->
+    <target name="com.google.code.gen-clipse.debug.ui.plugin" depends="com.google.code.gen-clipse.debug.ui.depends" description="compile the com.google.code.gen-clipse.debug.ui-plugin">
+        <javac destdir="${com.google.code.gen-clipse.debug.ui.bindir}" srcdir="${com.google.code.gen-clipse.debug.ui.srcdir}" target="1.5">
+        	<classpath>
+        		<pathelement location="${com.google.code.gen-clipse.debug.ui.bindir}"/>
+        		<pathelement location="${com.google.code.gen-clipse.debug.core.bindir}"/>
+        		<fileset dir="${com.google.code.gen-clipse.debug.ui.eclipsehome}/plugins">
+        			<include name="org.eclipse.debug.ui_*.jar"/>
+        			<include name="org.eclipse.ui.workbench_*.jar"/>
+        			<include name="org.eclipse.debug.core_*.jar"/>
+        			<include name="org.eclipse.osgi_*.jar"/>
+        			<include name="org.eclipse.core.resources_*.jar"/>
+        			<include name="org.eclipse.equinox.common_*.jar"/>
+        			<include name="org.eclipse.core.runtime_*.jar"/>
+        			<include name="org.eclipse.ui.ide_*.jar"/>
+        			<include name="org.eclipse.jface_*.jar"/>
+        			<include name="org.eclipse.core.jobs_*.jar"/>
+        			<include name="org.eclipse.ui.console_*.jar"/>
+        			<include name="org.eclipse.swt.gtk.linux.*.jar"/>
+        		</fileset>
+        	</classpath>
+        </javac>
+    </target>
+
+    <!-- - - - - - - - - - - - - - - - - - 
+          target: depends-prepares build-environment                      
+         - - - - - - - - - - - - - - - - - -->
+    <target name="com.google.code.gen-clipse.debug.ui.depends">
+    	<delete dir="${com.google.code.gen-clipse.debug.ui.bindir}"></delete>
+    	<delete dir="${com.google.code.gen-clipse.debug.ui.distdir}"></delete>
+    	<mkdir dir="${com.google.code.gen-clipse.debug.ui.bindir}"/>
+    	<mkdir dir="${com.google.code.gen-clipse.debug.ui.distdir}"/>
+    </target>
+
+	<!-- - - - - - - - - - - - - - - - - 
+		target: jar-creates jar file for com.google.code.gen-clipse.debug.ui
+	- - - - - - - - - - - - - - - - - -->
+	<target name="com.google.code.gen-clipse.debug.ui.jar" depends="com.google.code.gen-clipse.debug.ui.plugin">
+		<copy todir="${com.google.code.gen-clipse.debug.ui.distdir}" filtering="on">
+			<fileset dir="${com.google.code.gen-clipse.debug.ui.bindir}" excludes="**/*.java"/>
+		</copy>
+		<copy file="${com.google.code.gen-clipse.debug.ui.path}/plugin.xml" tofile="${com.google.code.gen-clipse.debug.ui.distdir}/plugin.xml">
+		</copy>
+		<jar destfile="${com.google.code.gen-clipse.debug.ui.distdir}/com.google.code.gen-clipse.debug.ui_${genclipse.version}.jar" basedir="${com.google.code.gen-clipse.debug.ui.distdir}" manifest="${com.google.code.gen-clipse.debug.ui.path}/meta-inf/manifest.mf"></jar>
+	</target>
+</project>
