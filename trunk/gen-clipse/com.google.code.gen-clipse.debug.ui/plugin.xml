@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin id="net.sf.geclipse.debug.ui" name="GEclipse DebugUi Plug-in" version="1.0.0">
+   <requires>
+      <import plugin="net.sf.geclipse.debug.core"/>
+      <import plugin="org.eclipse.core.resources"/>
+      <import plugin="org.eclipse.ui.console"/>
+   </requires>
+   <!--<id/>
+   <name/>
+   <version/>--> 
+   <extension
+         id="net.sf.geclipse.debug.ui.EbuildLaunchConfigurationTab"
+         name="GEclipse Ebuild Launcher"
+         point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+      <launchConfigurationTabGroup
+            class="net.sf.geclipse.debug.ui.EbuildLauncherTabGroup"
+            description="Define the actions that should be performed when debugging the specified ebuild"
+            id="net.sf.geclipse.debug.ui.launchConfigurationTabGroup"
+            type="net.sf.geclipse.debug.core.EbuildLaunchConfiguration">
+      </launchConfigurationTabGroup>
+   </extension>
+</plugin>
