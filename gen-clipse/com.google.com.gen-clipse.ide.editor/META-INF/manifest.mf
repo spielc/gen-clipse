@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: GEclipse Editor Plug-in
+Bundle-SymbolicName: net.sf.geclipse.ide.editor;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: net.sf.geclipse.ide.editor.Activator
+Bundle-Vendor: net.sf.geclipse.ide.editor
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.jface.text,
+ org.eclipse.ui.editors,
+ org.eclipse.ui.workbench.texteditor,
+ org.eclipse.ui,
+ org.eclipse.ui.ide,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources
+Eclipse-LazyStart: true

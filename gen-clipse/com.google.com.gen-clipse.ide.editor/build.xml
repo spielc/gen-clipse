@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<!-- ====================================================================== 
+     Jan 14, 2007 11:42:03 AM                                                        
+
+     ant build.xml file for net.sf.geclipse.ide.editor plugin
+     
+     author:Christoph
+                   
+                                                                     
+     ====================================================================== -->
+<project name="com.google.code.gen-clipse.ide.editor" default="com.google.code.gen-clipse.ide.editor.plugin" >
+	
+    <description>
+            description
+    </description>
+	
+	<property name="com.google.code.gen-clipse.ide.editor.srcdir" value="${com.google.code.gen-clipse.ide.editor.path}/src"/>
+	<property name="com.google.code.gen-clipse.ide.editor.bindir" value="${com.google.code.gen-clipse.ide.editor.path}/bin"/>
+	<property name="com.google.code.gen-clipse.ide.editor.distdir" value="${com.google.code.gen-clipse.ide.editor.path}/dist"/>
+	<property name="com.google.code.gen-clipse.ide.editor.docdir" value="${com.google.code.gen-clipse.ide.editor.path}/doc"/>
+	<property name="com.google.code.gen-clipse.ide.editor.eclipsehome" value="/root/eclipse"/>
+
+    <!-- ================================= 
+          target: plugin-compiles com.google.code.gen-clipse.ide.editor-plugin
+         ================================= -->
+    <target name="com.google.code.gen-clipse.ide.editor.plugin" depends="com.google.code.gen-clipse.ide.editor.depends" description="compile the com.google.code.gen-clipse.debug.core-plugin">
+        <javac destdir="${com.google.code.gen-clipse.ide.editor.bindir}" srcdir="${com.google.code.gen-clipse.ide.editor.srcdir}" target="1.5">
+        	<classpath>
+        		<pathelement location="${com.google.code.gen-clipse.ide.editor.bindir}"/>
+        	   	<fileset dir="${com.google.code.gen-clipse.ide.editor.eclipsehome}/plugins">
+        	    	<include name="org.eclipse.ui.workbench_*.jar" />
+        	    	<include name="org.eclipse.osgi_*.jar"/>
+        	    	<include name="org.eclipse.core.resources_*.jar"/>
+        	    	<include name="org.eclipse.core.runtime_*.jar"/>
+        	    	<include name="org.eclipse.ui.workbench.texteditor_*.jar"/>
+        	    	<include name="org.eclipse.ui.editors_*.jar"/>
+        	    	<include name="org.eclipse.core.commands_*.jar"/>
+        	    	<include name="org.eclipse.jface_*.jar"/>
+        	    	<include name="org.eclipse.jface.text_*.jar"/>
+        	    	<include name="org.eclipse.equinox.registry_*.jar"/>
+        	    	<include name="org.eclipse.equinox.common_*.jar"/>
+        	    	<include name="org.eclipse.text_*.jar"/>
+        	    	<include name="org.eclipse.swt.gtk.linux.*.jar"/>
+        	    	<include name="org.eclipse.equinox.common_*.jar"/>
+        	    </fileset>
+        	</classpath>
+        </javac>
+    </target>
+
+    <!-- - - - - - - - - - - - - - - - - - 
+          target: depends-prepares build-environment                      
+         - - - - - - - - - - - - - - - - - -->
+    <target name="com.google.code.gen-clipse.ide.editor.depends">
+    	<delete dir="${com.google.code.gen-clipse.ide.editor.bindir}"></delete>
+    	<delete dir="${com.google.code.gen-clipse.ide.editor.distdir}"></delete>
+    	<mkdir dir="${com.google.code.gen-clipse.ide.editor.bindir}"/>
+    	<mkdir dir="${com.google.code.gen-clipse.ide.editor.distdir}"/>
+    	<mkdir dir="${com.google.code.gen-clipse.ide.editor.distdir}/icons"/>
+    </target>
+	<!-- - - - - - - - - - - - - - - - - - 
+	          target: jar-creates jar file for com.google.code.gen-clipse.ide.editor                      
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="com.google.code.gen-clipse.ide.editor.jar" depends="com.google.code.gen-clipse.ide.editor.plugin">
+		<copy todir="${com.google.code.gen-clipse.ide.editor.distdir}" filtering="on">
+			<fileset dir="${com.google.code.gen-clipse.ide.editor.bindir}" excludes="**/*.java"/>
+		</copy>
+		<copy todir="${com.google.code.gen-clipse.ide.editor.distdir}/icons" filtering="on">
+			<fileset dir="${com.google.code.gen-clipse.ide.editor.path}/icons" includes="**/*.png"/>
+		</copy>
+		<copy file="${com.google.code.gen-clipse.ide.editor.path}/plugin.xml" tofile="${com.google.code.gen-clipse.ide.editor.distdir}/plugin.xml">
+		</copy>
+		<copy file="${com.google.code.gen-clipse.ide.editor.srcdir}/com/google/code/genclipse/ide/editor/EbuildEditor.properties" tofile="${com.google.code.gen-clipse.ide.editor.distdir}/com/google/code/genclipse/ide/editor/EbuildEditor.properties">
+		</copy>
+		<jar destfile="${com.google.code.gen-clipse.ide.editor.distdir}/com.google.code.gen-clipse.ide.editor_${geclipse.version}.jar" basedir="${com.google.code.gen-clipse.ide.editor.distdir}" manifest="${com.google.code.gen-clipse.ide.editor.path}/META-INF/manifest.mf"></jar>
+	</target>
+</project>
