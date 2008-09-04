@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin id="net.sf.geclipse.debug.core" name="net.sf.geclipse.debug.core" version="1.0.0">
+   <extension
+         name="GEclipse Ebuild Launcher"
+         point="org.eclipse.debug.core.launchConfigurationTypes">
+      <launchConfigurationType
+            delegate="net.sf.geclipse.debug.core.launching.EbuildLaunchingConfiguration"
+            id="net.sf.geclipse.debug.core.EbuildLaunchConfiguration"
+            modes="debug"
+            name="GEclipse Ebuild Launcher">
+         <fileExtension
+               default="true"
+               extension="ebuild">
+         </fileExtension>
+      </launchConfigurationType>
+   </extension>
+</plugin>
