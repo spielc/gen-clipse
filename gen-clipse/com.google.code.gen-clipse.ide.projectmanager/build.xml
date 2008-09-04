@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!-- ====================================================================== 
+     Jan 14, 2007 11:42:03 AM                                                        
+
+     ant build.xml file for net.sf.geclipse.ide.projectmanager plugin
+     
+     author:Christoph
+                   
+                                                                     
+     ====================================================================== -->
+<project name="com.google.code.gen-clipse.ide.projectmanager" default="com.google.code.gen-clipse.ide.projectmanager.plugin" >
+	
+    <description>
+            description
+    </description>
+	
+	<property name="com.google.code.gen-clipse.ide.projectmanager.srcdir" value="${com.google.code.gen-clipse.ide.projectmanager.path}/src"/>
+	<property name="com.google.code.gen-clipse.ide.projectmanager.bindir" value="${com.google.code.gen-clipse.ide.projectmanager.path}/bin"/>
+	<property name="com.google.code.gen-clipse.ide.projectmanager.distdir" value="${com.google.code.gen-clipse.ide.projectmanager.path}/dist"/>
+	<property name="com.google.code.gen-clipse.ide.projectmanager.docdir" value="${com.google.code.gen-clipse.ide.projectmanager.path}/doc"/>
+	<property name="com.google.code.gen-clipse.ide.projectmanager.eclipsehome" value="/root/eclipse"/>
+
+	<!-- ================================= 
+          target: plugin-compiles com.google.code.gen-clipse.ide.projectmanager-plugin
+         ================================= -->
+    <target name="com.google.code.gen-clipse.ide.projectmanager.plugin" depends="com.google.code.gen-clipse.ide.projectmanager.depends" description="compile the nature-plugin">
+        <javac destdir="${com.google.code.gen-clipse.ide.projectmanager.bindir}" srcdir="${com.google.code.gen-clipse.ide.projectmanager.srcdir}" target="1.5">
+        	<classpath>
+        		<pathelement location="${com.google.code.gen-clipse.ide.projectmanager.bindir}"/>
+        		<fileset dir="${com.google.code.gen-clipse.ide.projectmanager.eclipsehome}/plugins">
+        			<include name="org.eclipse.ui.workbench_*.jar"/>
+        			<include name="org.eclipse.osgi_*.jar"/>
+        			<include name="org.eclipse.core.resources_*.jar"/>
+        			<include name="org.eclipse.equinox.common_*.jar"/>
+        			<include name="org.eclipse.core.runtime_*.jar"/>
+        			<include name="org.eclipse.ui.ide_*.jar"/>
+        			<include name="org.eclipse.jface_*.jar"/>
+        			<include name="org.eclipse.core.jobs_*.jar"/>
+        			<include name="org.eclipse.swt.gtk.linux.*.jar"/>
+        		</fileset>
+        	</classpath>
+        </javac>
+    </target>
+
+    <!-- - - - - - - - - - - - - - - - - - 
+          target: depends-prepares build-environment                      
+         - - - - - - - - - - - - - - - - - -->
+    <target name="com.google.code.gen-clipse.ide.projectmanager.depends">
+    	<delete dir="${com.google.code.gen-clipse.ide.projectmanager.bindir}"></delete>
+    	<delete dir="${com.google.code.gen-clipse.ide.projectmanager.distdir}"></delete>
+    	<mkdir dir="${com.google.code.gen-clipse.ide.projectmanager.bindir}"/>
+    	<mkdir dir="${com.google.code.gen-clipse.ide.projectmanager.distdir}"/>
+    	<mkdir dir="${com.google.code.gen-clipse.ide.projectmanager.distdir}/icons"/>
+    </target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+		          target: jar-creates jar file for com.google.code.gen-clipse.ide.projectmanager
+		         - - - - - - - - - - - - - - - - - -->
+		<target name="com.google.code.gen-clipse.ide.projectmanager.jar" depends="com.google.code.gen-clipse.ide.projectmanager.plugin">
+			<copy todir="${com.google.code.gen-clipse.ide.projectmanager.distdir}" filtering="on">
+				<fileset dir="${com.google.code.gen-clipse.ide.projectmanager.bindir}" excludes="**/*.java"/>
+			</copy>
+			<copy todir="${com.google.code.gen-clipse.ide.projectmanager.distdir}/icons" filtering="on">
+				<fileset dir="${com.google.code.gen-clipse.ide.projectmanager.path}/icons" includes="**/*.png"/>
+			</copy>
+			<copy file="${com.google.code.gen-clipse.ide.projectmanager.path}/plugin.xml" tofile="${com.google.code.gen-clipse.ide.projectmanager.distdir}/plugin.xml">
+			</copy>
+			<jar destfile="${com.google.code.gen-clipse.ide.projectmanager.distdir}/com.google.code.gen-clipse.ide.projectmanager_${geclipse.version}.jar" basedir="${com.google.code.gen-clipse.ide.projectmanager.distdir}" manifest="${com.google.code.gen-clipse.ide.projectmanager.path}/meta-inf/manifest.mf"></jar>
+		</target>
+</project>
