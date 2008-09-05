@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Nature Plug-in
-Bundle-SymbolicName: net.sf.geclipse.ide.projectmanager;singleton:=true
+Bundle-SymbolicName: com.google.code.gen-clipse.ide.projectmanager;singleton:=true
 Bundle-Version: 1.0.0
-Bundle-Activator: net.sf.geclipse.ide.projectmanager.EbuildProjectPlugin
+Bundle-Activator: com.google.code.genclipse.ide.projectmanager.EbuildProjectPlugin
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
