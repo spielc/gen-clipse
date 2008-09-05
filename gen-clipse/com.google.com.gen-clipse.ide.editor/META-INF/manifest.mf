@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: GEclipse Editor Plug-in
-Bundle-SymbolicName: net.sf.geclipse.ide.editor;singleton:=true
+Bundle-Name: gen-clipse Editor Plug-in
+Bundle-SymbolicName: com.google.code.genclipse.ide.editor.EbuildEditor;singleton:=true
 Bundle-Version: 1.0.0
-Bundle-Activator: net.sf.geclipse.ide.editor.Activator
-Bundle-Vendor: net.sf.geclipse.ide.editor
+Bundle-Activator: com.google.code.genclipse.ide.editor.Activator
+Bundle-Vendor: com.google.code.genclipse.ide.editor.EbuildEditor
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.jface.text,
  org.eclipse.ui.editors,

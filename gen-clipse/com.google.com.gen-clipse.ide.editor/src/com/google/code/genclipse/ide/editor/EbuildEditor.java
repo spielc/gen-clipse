@@ -18,10 +18,10 @@ import org.eclipse.ui.texteditor.ITextEditorActionDefinitionIds;
 
 public class EbuildEditor extends TextEditor {
 
-	private final static String RESOURCE_BUNDLE = "net.sf.geclipse.ide.editor.EbuildEditor";
+	private final static String RESOURCE_BUNDLE = "com.google.code.genclipse.ide.editor.EbuildEditor";
 	private static EbuildEditor editor;
 	private EbuildColorProvider colorProvider;
-	private ProjectionSupport fProjectionSupport;
+	//private ProjectionSupport fProjectionSupport;
 	
 	public EbuildEditor(){
 		super();

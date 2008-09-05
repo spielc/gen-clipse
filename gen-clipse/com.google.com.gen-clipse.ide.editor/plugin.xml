@@ -4,11 +4,11 @@
    <extension
          point="org.eclipse.ui.editors">
       <editor
-            class="net.sf.geclipse.ide.editor.EbuildEditor"
+            class="com.google.code.genclipse.ide.editor.EbuildEditor"
             default="false"
             extensions="ebuild"
             icon="icons/glogo-tiny.png"
-            id="net.sf.geclipse.ide.editor.EbuildEditor"
+            id="om.google.code.genclipse.ide.editor.EbuildEditor"
             name="Ebuild Editor"/>
    </extension>
 
