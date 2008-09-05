@@ -13,44 +13,44 @@ public class EbuildSyntaxBean {
 		}
 	}
 	
-	private static String[] BASH_KEYWORDS = {"if", "then", "elif","else", "fi"};
+	private String[] BASH_KEYWORDS = {"if", "then", "elif","else", "fi"};
 	
-	private static String[] EBUILD_VARIABLES = {"P","PN","PV","PR","PVR","PF","A",
+	private String[] EBUILD_VARIABLES = {"P","PN","PV","PR","PVR","PF","A",
 		"DISTDIR","FILESDIR","WORKDIR","S","T","D","SLOT","LICENSE","KEYWORDS",
 		"DESCRIPTION","SRC_URI","HOMEPAGE","IUSE","DEPEND","RDEPEND", "RESTRICT"};
 	
-	private static String[] EBUILD_METHODES = {"pkg_setup", "pkg_nofetch",
+	private String[] EBUILD_METHODES = {"pkg_setup", "pkg_nofetch",
 		"src_unpack", "src_compile", "src_install", "src_test", "pkg_preinst", 
 		"pkg_postinst", "pkg_prerm", "pkg_postrm", "pkg_config"};
 	
-	private static String[] EBUILD_BUILDTIN_FUNCTIONS = {"use", "has_version",
+	private String[] EBUILD_BUILDTIN_FUNCTIONS = {"use", "has_version",
 		"best_version", "use_with", "use_enable", "check_KV", "keepdir", "econf",
 		"einstall", "die", "elog", "einfo", "eerror"};
 	
-	private static Vector<String> eClasses;
+	private Vector<String> eClasses;
 	
 	public EbuildSyntaxBean() {
 		this.eClasses=new Vector<String>();
 		this.getEclasses();
 	}
 
-	public static String[] getBASH_KEYWORDS() {
+	public String[] getBASH_KEYWORDS() {
 		return BASH_KEYWORDS;
 	}
 
-	public static String[] getEBUILD_VARIABLES() {
+	public String[] getEBUILD_VARIABLES() {
 		return EBUILD_VARIABLES;
 	}
 
-	public static String[] getEBUILD_METHODES() {
+	public String[] getEBUILD_METHODES() {
 		return EBUILD_METHODES;
 	}
 
-	public static String[] getEBUILD_BUILDTIN_FUNCTIONS() {
+	public String[] getEBUILD_BUILDTIN_FUNCTIONS() {
 		return EBUILD_BUILDTIN_FUNCTIONS;
 	}
 
-	public static Vector<String> getEClasses() {
+	public Vector<String> getEClasses() {
 		return eClasses;
 	}
 	
@@ -59,7 +59,7 @@ public class EbuildSyntaxBean {
 		String[] eclasses=f.list(new EclassFilenameFilter());
 		for (String eclassFile:eclasses) {
 			eclassFile=eclassFile.substring(0, eclassFile.indexOf("."));
-			EbuildSyntaxBean.eClasses.add(eclassFile);
+			this.eClasses.add(eclassFile);
 		}
 	}
 }
