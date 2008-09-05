@@ -1,9 +1,7 @@
 package com.google.code.genclipse.ide.editor.syntax;
 
-import com.google.code.genclipse.ide.editor.Activator;
 import com.google.code.genclipse.ide.editor.syntax.autocompletion.EbuildAssistProcessor;
 
-import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.contentassist.ContentAssistant;
 import org.eclipse.jface.text.contentassist.IContentAssistant;
