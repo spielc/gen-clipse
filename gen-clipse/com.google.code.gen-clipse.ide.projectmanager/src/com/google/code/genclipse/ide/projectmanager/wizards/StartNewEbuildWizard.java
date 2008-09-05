@@ -30,7 +30,7 @@ public class StartNewEbuildWizard extends BasicNewFileResourceWizard {
 	 */
 	@Override
 	public void addPages() {
-		this.wizard=new NewEbuildWizard("net.sf.geclipse.projectmanager.wizards.NewEbuildWizard",this.getSelection());
+		this.wizard=new NewEbuildWizard("com.google.code.gen-clipse.ide.projectmanager.NewEbuildWizard",this.getSelection());
 		this.wizard.setTitle("Create new Ebuild");
 		this.wizard.setDescription("Use this wizard to create a new ebuild!");
 		this.addPage(this.wizard);	

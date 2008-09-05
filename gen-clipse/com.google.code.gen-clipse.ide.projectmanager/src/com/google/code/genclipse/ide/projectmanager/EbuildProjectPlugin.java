@@ -10,7 +10,7 @@ import org.osgi.framework.BundleContext;
 public class EbuildProjectPlugin extends AbstractUIPlugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "net.sf.geclipse.ui.nature";
+	public static final String PLUGIN_ID = "com.google.code.gen-clipse.ide.projectmanager";
 
 	// The shared instance
 	private static EbuildProjectPlugin plugin;

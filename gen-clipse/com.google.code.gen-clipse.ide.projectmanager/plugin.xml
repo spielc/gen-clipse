@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.2"?>
 <plugin
-   id="net.sf.geclipse.ide.projectmanager"
-   name="net.sf.geclipse.ide.projectmanager"
+   id="com.google.code.gen-clipse.ide.projectmanager"
+   name="com.google.code.gen-clipse.ide.projectmanager"
    version="1.0.0"
->
+
+   class="com.google.code.genclipse.ide.projectmanager.EbuildProjectPlugin">
    <requires>
       <import plugin="org.eclipse.core.resources"/>
       <import plugin="org.eclipse.platform"/>
@@ -13,58 +14,58 @@
       <import plugin="org.eclipse.ui"/>
    </requires>
    <extension
-         id="net.sf.geclipse.ide.projectmanager.EbuildNature"
-         name="net.sf.geclipse.ide.projectmanager.EbuildNature"
+         id="com.google.code.gen-clipse.ide.projectmanager.EbuildNature"
+         name="com.google.code.gen-clipseide.projectmanager.EbuildNature"
          point="org.eclipse.core.resources.natures">
       <runtime> 
-      	<run class="net.sf.geclipse.ide.projectmanager.EbuildNature"/>
+      	<run class="com.google.code.genclipse.ide.projectmanager.EbuildNature"/>
       </runtime>
    </extension>
    <extension
          point="org.eclipse.ui.newWizards">
       <category
-            id="net.sf.geclipse.ide.projectmanager.newEbuildWizards"
+            id="com.google.code.gen-clipse.ide.projectmanager.newEbuildWizards"
             name="GEclipse"
             >
       </category>
       <wizard
             canFinishEarly="false"
-            category="net.sf.geclipse.ide.projectmanager.newEbuildWizards"
-            class="net.sf.geclipse.ide.projectmanager.wizards.StartNewEbuildCategoryWizard"
+            category="com.google.code.gen-clipse.ide.projectmanager.newEbuildWizards"
+            class="com.google.code.genclipse.ide.projectmanager.wizards.StartNewEbuildCategoryWizard"
             hasPages="true"
             icon="icons/glogo-tiny.png"
-            id="net.sf.geclipse.ide.projectmanager.NewCategoryWizard"
+            id="com.google.code.gen-clipse.ide.projectmanager.NewCategoryWizard"
             name="New Ebuild Category"
             project="true">
       </wizard>
       <wizard
             canFinishEarly="false"
             category="org.eclipse.ui.Basic"
-            class="net.sf.geclipse.ide.projectmanager.wizards.StartNewEbuildWizard"
+            class="com.google.code.genclipse.ide.projectmanager.wizards.StartNewEbuildWizard"
             hasPages="true"
             icon="icons/glogo-tiny.png"
-            id="net.sf.geclipse.ide.projectmanager.NewEbuildWizard"
+            id="com.google.code.gen-clipse.ide.projectmanager.NewEbuildWizard"
             name="New Ebuild">
          <selection
                class="org.eclipse.core.resources.IResource"
-               name="net.sf.geclipse.ide.projectmanager.EbuildCategory">
+               name="com.google.code.gen-clipse.ide.projectmanager.EbuildCategory">
          </selection>
       </wizard>
    </extension>
    <extension
-         id="net.sf.geclipse.ide.projectmanager.EbuildCreationPopup"
+         id="com.google.code.gen-clipse.ide.projectmanager.EbuildCreationPopup"
          point="org.eclipse.ui.popupMenus">
       <objectContribution
-            id="net.sf.geclipse.ide.projectmanager.EbuildCreationPopup.contribution.object"
+            id="com.google.code.gen-clipse.ide.projectmanager.EbuildCreationPopup.contribution.object"
             objectClass="org.eclipse.core.resources.IProject">
          <filter
                name="projectNature"
-               value="net.sf.geclipse.ide.projectmanager.EbuildNature">
+               value="com.google.code.gen-clipse.ide.projectmanager.EbuildNature">
          </filter>
          <action
-               class="net.sf.geclipse.ide.projectmanager.actions.NewEbuildActionDelegate"
+               class="com.google.code.genclipse.ide.projectmanager.actions.NewEbuildActionDelegate"
                icon="icons/glogo-tiny.png"
-               id="net.sf.geclipse.ide.projectmanager.EbuildCreationPopup.action"
+               id="com.google.code.gen-clipse.ide.projectmanager.EbuildCreationPopup.action"
                label="Create new ebuild"
                menubarPath="additions">
          </action>
