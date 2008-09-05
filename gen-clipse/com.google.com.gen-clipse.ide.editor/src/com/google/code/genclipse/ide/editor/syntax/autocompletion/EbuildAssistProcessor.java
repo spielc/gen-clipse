@@ -21,7 +21,7 @@ public class EbuildAssistProcessor implements IContentAssistProcessor, IEbuildSy
 		String text = viewer.getDocument().get().substring(0, offset);
 		String word = getLastWord(text);
 		
-		ArrayList list = new ArrayList();
+		ArrayList<ICompletionProposal> list = new ArrayList<ICompletionProposal>();
 		if(word!=null){
 			for(int i=0;i<SYNTAX.getEBUILD_BUILDTIN_FUNCTIONS().length;i++){
 				if(SYNTAX.getEBUILD_BUILDTIN_FUNCTIONS()[i].startsWith(word)){
