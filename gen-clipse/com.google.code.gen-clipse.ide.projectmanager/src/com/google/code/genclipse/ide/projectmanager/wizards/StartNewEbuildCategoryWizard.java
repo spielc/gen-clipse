@@ -46,7 +46,6 @@ public class StartNewEbuildCategoryWizard extends Wizard implements INewWizard {
 	 * @author Christoph
 	 */
 	public void init(IWorkbench wb, IStructuredSelection sel) {
-		System.out.println("bla");
 		this.errorMsg=null;
 		this.setWindowTitle("New Ebuild Category");
 		this.setDefaultPageImageDescriptor(Helper.getImageDescriptor("glogo-small.png"));
