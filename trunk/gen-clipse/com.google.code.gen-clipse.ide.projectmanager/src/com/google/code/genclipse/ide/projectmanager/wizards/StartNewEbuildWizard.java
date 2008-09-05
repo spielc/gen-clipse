@@ -34,7 +34,6 @@ public class StartNewEbuildWizard extends BasicNewFileResourceWizard {
 		this.wizard.setTitle("Create new Ebuild");
 		this.wizard.setDescription("Use this wizard to create a new ebuild!");
 		this.addPage(this.wizard);	
-		System.out.println(this.getPageCount());
 	}
 	/**
 	 * This method is called when the user clicks the finish button in the dialog
