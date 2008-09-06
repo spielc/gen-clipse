@@ -14,6 +14,7 @@ public class EbuildColorProvider {
 	public static final RGB STRING = new RGB(128,0,0);
 	public static final RGB DEFAULT = new RGB(0, 0, 0);
 	public static final RGB BASH_KEYWORDS = new RGB(0,0,0);
+	public static final RGB ECLASSES = new RGB(0,0,0);
 
 	protected Map<RGB, Color> fColorTable = new HashMap<RGB, Color> (4);
 	
