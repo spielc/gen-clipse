@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.2"?>
-<plugin id="net.sf.geclipse.debug.core" name="net.sf.geclipse.debug.core" version="1.0.0">
+<plugin
+   id="com.google.code.gen-clipse.debug.core"
+   name="com.google.code.gen-clipse.debug.core"
+   version="1.0.0"
+
+   class="com.google.code.genclipse.debug.core.Activator">
    <extension
          name="GEclipse Ebuild Launcher"
          point="org.eclipse.debug.core.launchConfigurationTypes">
       <launchConfigurationType
-            delegate="net.sf.geclipse.debug.core.launching.EbuildLaunchingConfiguration"
-            id="net.sf.geclipse.debug.core.EbuildLaunchConfiguration"
+            delegate="com.google.code.genclipse.debug.core.launching.EbuildLaunchingConfiguration"
+            id="com.google.code.gen-clipse.debug.core.EbuildLaunchConfiguration"
             modes="debug"
-            name="GEclipse Ebuild Launcher">
+            name="gen-clipse Ebuild Launcher">
          <fileExtension
                default="true"
                extension="ebuild">
