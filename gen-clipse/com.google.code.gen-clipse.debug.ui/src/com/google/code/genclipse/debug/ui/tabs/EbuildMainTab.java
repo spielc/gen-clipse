@@ -108,7 +108,7 @@ public class EbuildMainTab extends AbstractLaunchConfigurationTab  {
 		IWorkspace workspace=ResourcesPlugin.getWorkspace();
 		for (IProject project:workspace.getRoot().getProjects()) {
 			try {
-				if (project.hasNature("net.sf.geclipse.ide.projectmanager.EbuildNature"))
+				if (project.hasNature("com.google.code.gen-clipse.ide.projectmanager.EbuildNature"))
 					projectNames.add(project.getName());
 			} catch (CoreException ce) {
 				ce.printStackTrace();
