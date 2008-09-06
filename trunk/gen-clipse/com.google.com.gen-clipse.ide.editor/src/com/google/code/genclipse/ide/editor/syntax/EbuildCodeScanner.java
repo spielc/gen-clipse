@@ -27,6 +27,7 @@ public class EbuildCodeScanner extends RuleBasedScanner implements
 		IToken buildtin_function = new Token(new TextAttribute(provider.getColor(EbuildColorProvider.EBUILD_BUILDTIN_FUNCTIONS),new Color(Display.getCurrent(),new RGB(255,255,255)),1));
 		IToken methodes = new Token(new TextAttribute(provider.getColor(EbuildColorProvider.EBUILD_METHODES),new Color(Display.getCurrent(),new RGB(255,255,255)),1));
 		IToken bash_keyword = new Token(new TextAttribute(provider.getColor(EbuildColorProvider.BASH_KEYWORDS),new Color(Display.getCurrent(),new RGB(255,255,255)),1));
+		IToken eclass = new Token(new TextAttribute(provider.getColor(EbuildColorProvider.ECLASSES),new Color(Display.getCurrent(),new RGB(255,255,255)),1));
 				
 		List<Object> rules = new ArrayList<Object>();	
 				
@@ -43,8 +44,9 @@ public class EbuildCodeScanner extends RuleBasedScanner implements
 		rules.add(new SingleLineRule("'", "'", string, '\\'));
 
 		// keywords
-		WordRule wr = new WordRule(new EbuildWordDetector(),other);
 		
+		WordRule wr = new WordRule(new EbuildWordDetector(),other);
+				
 		for(int i=0; i < SYNTAX.getEBUILD_VARIABLES().length;i++){
 			wr.addWord(SYNTAX.getEBUILD_VARIABLES()[i], variable);
 		}//for
@@ -60,6 +62,11 @@ public class EbuildCodeScanner extends RuleBasedScanner implements
 		for(int i=0; i < SYNTAX.getBASH_KEYWORDS().length;i++){
 			wr.addWord(SYNTAX.getBASH_KEYWORDS()[i], bash_keyword);
 		}//for
+		
+		for (String eClass:SYNTAX.getEClasses()) {
+			System.out.println(eClass);
+			wr.addWord(eClass, eclass);
+		}
 		
 		rules.add(wr);
 		

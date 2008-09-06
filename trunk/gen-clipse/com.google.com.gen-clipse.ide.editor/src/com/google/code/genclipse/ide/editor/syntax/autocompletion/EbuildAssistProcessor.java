@@ -84,6 +84,18 @@ public class EbuildAssistProcessor implements IContentAssistProcessor, IEbuildSy
 
 				}
 			}//for
+			for (String eClass:SYNTAX.getEClasses()) {
+				if (eClass.startsWith(word)) {
+					list.add(new CompletionProposal(
+							eClass,
+							offset - word.length(),
+							word.length(),
+							eClass.length(),
+							null,
+							eClass,
+							null,null));
+				}
+			}
 		}
 		
 		ICompletionProposal[] prop = (ICompletionProposal[])list.toArray(new ICompletionProposal[list.size()]);
