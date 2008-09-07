@@ -19,6 +19,7 @@ public class EbuildAssistProcessor implements IContentAssistProcessor, IEbuildSy
 			int offset) {
 		
 		String text = viewer.getDocument().get().substring(0, offset);
+		//viewer.getDocument().
 		String word = getLastWord(text);
 		
 		ArrayList<ICompletionProposal> list = new ArrayList<ICompletionProposal>();

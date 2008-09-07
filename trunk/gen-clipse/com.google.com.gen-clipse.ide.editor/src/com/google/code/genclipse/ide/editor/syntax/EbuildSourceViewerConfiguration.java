@@ -1,5 +1,6 @@
 package com.google.code.genclipse.ide.editor.syntax;
 
+import com.google.code.genclipse.ide.editor.EbuildEditor;
 import com.google.code.genclipse.ide.editor.syntax.autocompletion.EbuildAssistProcessor;
 
 import org.eclipse.jface.text.IDocument;
@@ -11,7 +12,7 @@ import org.eclipse.jface.text.rules.DefaultDamagerRepairer;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.jface.text.source.SourceViewerConfiguration;
 
-public class EbuildSourceViewerConfiguration extends SourceViewerConfiguration {
+public class EbuildSourceViewerConfiguration extends SourceViewerConfiguration{
 	private final static boolean ENABLE_ASSIST_AUTO_ACTIVATION = true;
 	private final static int ASSIST_ACTIVATION_DELAY = 1;
 	
@@ -33,9 +34,20 @@ public class EbuildSourceViewerConfiguration extends SourceViewerConfiguration {
 	public IPresentationReconciler getPresentationReconciler(ISourceViewer sourceViewer){
 		if(reconciler == null){
 			reconciler = new PresentationReconciler();
-			DefaultDamagerRepairer dr = new DefaultDamagerRepairer(getEbuildCodeScanner());
+			/*DefaultDamagerRepairer dr = new DefaultDamagerRepairer(getEbuildCodeScanner());
 			reconciler.setDamager(dr, IDocument.DEFAULT_CONTENT_TYPE);
-			reconciler.setRepairer(dr, IDocument.DEFAULT_CONTENT_TYPE);
+			reconciler.setRepairer(dr, IDocument.DEFAULT_CONTENT_TYPE);*/
+			
+			DefaultDamagerRepairer commentDr
+		      = new DefaultDamagerRepairer( EbuildEditor.getScanner().getCommentScanner(colorProvider) );
+		    reconciler.setDamager( commentDr, IEbuildDocumentPartitioner.EBUILD_COMMENT );
+		    reconciler.setRepairer( commentDr, IEbuildDocumentPartitioner.EBUILD_COMMENT );
+		    
+		    DefaultDamagerRepairer functionDr
+		      = new DefaultDamagerRepairer( EbuildEditor.getScanner().getEbuildFunctionScanner(colorProvider) );
+		    reconciler.setDamager( functionDr, IEbuildDocumentPartitioner.EBUILD_FUNCTION );
+		    reconciler.setRepairer( functionDr, IEbuildDocumentPartitioner.EBUILD_FUNCTION );
+		    
 		}//if
 		return reconciler;
 	}
@@ -52,6 +64,11 @@ public class EbuildSourceViewerConfiguration extends SourceViewerConfiguration {
 		assistant.setAutoActivationDelay(ASSIST_ACTIVATION_DELAY);
 		
 		return assistant;
+	}
+
+	@Override
+	public String[] getConfiguredContentTypes(ISourceViewer sourceViewer) {
+		return new String[]{IDocument.DEFAULT_CONTENT_TYPE,IEbuildDocumentPartitioner.EBUILD_COMMENT,IEbuildDocumentPartitioner.EBUILD_FUNCTION};
 	}
 	
 }
