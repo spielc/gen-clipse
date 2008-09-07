@@ -21,7 +21,7 @@ public class EbuildCodeScanner extends RuleBasedScanner implements
 
 	public EbuildCodeScanner(EbuildColorProvider provider){
 		IToken string = new Token(new TextAttribute(provider.getColor(EbuildColorProvider.STRING)));
-		IToken comment =  new Token(new TextAttribute(provider.getColor(EbuildColorProvider.EBUILD_COMMENT)));
+		//IToken comment =  new Token(new TextAttribute(provider.getColor(EbuildColorProvider.EBUILD_COMMENT)));
 		IToken variable = new Token(new TextAttribute(provider.getColor(EbuildColorProvider.EBUILD_VARIABLES),new Color(Display.getCurrent(),new RGB(255,255,255)),1));
 		IToken other = new Token(new TextAttribute(provider.getColor(EbuildColorProvider.DEFAULT)));
 		IToken buildtin_function = new Token(new TextAttribute(provider.getColor(EbuildColorProvider.EBUILD_BUILDTIN_FUNCTIONS),new Color(Display.getCurrent(),new RGB(255,255,255)),1));
@@ -32,7 +32,7 @@ public class EbuildCodeScanner extends RuleBasedScanner implements
 		List<Object> rules = new ArrayList<Object>();	
 				
 		// rule for line comment
-		rules.add(new EndOfLineRule("#", comment));
+		//rules.add(new EndOfLineRule("#", comment));
 		
 		// Add a rule for double quotes
 		rules.add(new MultiLineRule("\"", "\"", string,'\\'));
@@ -64,7 +64,6 @@ public class EbuildCodeScanner extends RuleBasedScanner implements
 		}//for
 		
 		for (String eClass:SYNTAX.getEClasses()) {
-			System.out.println(eClass);
 			wr.addWord(eClass, eclass);
 		}
 		
