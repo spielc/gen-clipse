@@ -48,6 +48,12 @@ public class EbuildSourceViewerConfiguration extends SourceViewerConfiguration{
 		    reconciler.setDamager( functionDr, IEbuildDocumentPartitioner.EBUILD_FUNCTION );
 		    reconciler.setRepairer( functionDr, IEbuildDocumentPartitioner.EBUILD_FUNCTION );
 		    
+		    DefaultDamagerRepairer inheritDr
+		      = new DefaultDamagerRepairer( EbuildEditor.getScanner().getEbuildInheritScanner(colorProvider) );
+		    reconciler.setDamager( inheritDr, IEbuildDocumentPartitioner.EBUILD_INHERITS );
+		    reconciler.setRepairer( inheritDr, IEbuildDocumentPartitioner.EBUILD_INHERITS );
+		    
+		    
 		}//if
 		return reconciler;
 	}

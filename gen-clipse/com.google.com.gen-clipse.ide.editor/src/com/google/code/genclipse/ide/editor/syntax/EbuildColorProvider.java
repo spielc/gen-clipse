@@ -10,7 +10,7 @@ public class EbuildColorProvider {
 	public static final RGB EBUILD_VARIABLES = new RGB(0, 0, 128);
 	public static final RGB EBUILD_COMMENT = new RGB(0, 128, 0);
 	public static final RGB EBUILD_BUILDTIN_FUNCTIONS = new RGB(190,128,0);
-	public static final RGB EBUILD_METHODES = new RGB(0,128,255);
+	public static final RGB EBUILD_METHODS = new RGB(0,128,255);
 	public static final RGB STRING = new RGB(128,0,0);
 	public static final RGB DEFAULT = new RGB(0, 0, 0);
 	public static final RGB BASH_KEYWORDS = new RGB(0,0,0);

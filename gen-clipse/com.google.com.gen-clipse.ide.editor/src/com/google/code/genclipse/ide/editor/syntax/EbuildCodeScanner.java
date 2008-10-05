@@ -25,7 +25,7 @@ public class EbuildCodeScanner extends RuleBasedScanner implements
 		IToken variable = new Token(new TextAttribute(provider.getColor(EbuildColorProvider.EBUILD_VARIABLES),new Color(Display.getCurrent(),new RGB(255,255,255)),1));
 		IToken other = new Token(new TextAttribute(provider.getColor(EbuildColorProvider.DEFAULT)));
 		IToken buildtin_function = new Token(new TextAttribute(provider.getColor(EbuildColorProvider.EBUILD_BUILDTIN_FUNCTIONS),new Color(Display.getCurrent(),new RGB(255,255,255)),1));
-		IToken methodes = new Token(new TextAttribute(provider.getColor(EbuildColorProvider.EBUILD_METHODES),new Color(Display.getCurrent(),new RGB(255,255,255)),1));
+		IToken methodes = new Token(new TextAttribute(provider.getColor(EbuildColorProvider.EBUILD_METHODS),new Color(Display.getCurrent(),new RGB(255,255,255)),1));
 		IToken bash_keyword = new Token(new TextAttribute(provider.getColor(EbuildColorProvider.BASH_KEYWORDS),new Color(Display.getCurrent(),new RGB(255,255,255)),1));
 		IToken eclass = new Token(new TextAttribute(provider.getColor(EbuildColorProvider.ECLASSES),new Color(Display.getCurrent(),new RGB(255,255,255)),1));
 				
