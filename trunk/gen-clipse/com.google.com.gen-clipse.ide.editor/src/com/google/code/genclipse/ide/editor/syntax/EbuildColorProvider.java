@@ -19,9 +19,9 @@ public class EbuildColorProvider {
 	protected Map<RGB, Color> fColorTable = new HashMap<RGB, Color> (4);
 	
 	public void dispose() {
-	       Iterator e = fColorTable.values().iterator();
+	       Iterator<Color> e = fColorTable.values().iterator();
 	       while (e.hasNext())
-	                ((Color)e.next()).dispose();
+	                e.next().dispose();
 	}
 	
 	public Color getColor(RGB rgb) {

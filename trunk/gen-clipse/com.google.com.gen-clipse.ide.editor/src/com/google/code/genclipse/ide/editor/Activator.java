@@ -1,7 +1,5 @@
 package com.google.code.genclipse.ide.editor;
 
-import java.io.*;
-
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 

@@ -25,7 +25,7 @@ public class EbuildSyntaxBean {
 	
 	private String[] EBUILD_BUILDTIN_FUNCTIONS = {"use", "has_version",
 		"best_version", "use_with", "use_enable", "check_KV", "keepdir", "econf",
-		"einstall", "die", "elog", "einfo", "eerror"};
+		"einstall", "die", "elog", "einfo", "eerror", "ewarn"};
 	
 	private Vector<String> eClasses;
 	

@@ -8,17 +8,23 @@ import org.eclipse.jface.text.rules.IToken;
 import org.eclipse.jface.text.rules.MultiLineRule;
 import org.eclipse.jface.text.rules.RuleBasedPartitionScanner;
 import org.eclipse.jface.text.rules.RuleBasedScanner;
+import org.eclipse.jface.text.rules.SingleLineRule;
 import org.eclipse.jface.text.rules.Token;
 import org.eclipse.jface.text.rules.WordRule;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.widgets.Display;
 
+/**
+ * @author christoph
+ *
+ */
 public class EbuildDocumentPartitionScanner extends RuleBasedPartitionScanner {
 	
 	private CommentScanner cScanner;
 	private EbuildFunctionScanner fScanner;
 	private EbuildInheritScanner iScanner;
+	private StringScanner sScanner;
 	
 	public EbuildDocumentPartitionScanner() {
 		/*IToken comment =  new Token(new TextAttribute(provider.getColor(EbuildColorProvider.EBUILD_COMMENT)));
@@ -26,12 +32,14 @@ public class EbuildDocumentPartitionScanner extends RuleBasedPartitionScanner {
 		IToken comment=new Token(IEbuildDocumentPartitioner.EBUILD_COMMENT);
 	    IToken function=new Token(IEbuildDocumentPartitioner.EBUILD_FUNCTION);
 	    IToken inherit=new Token(IEbuildDocumentPartitioner.EBUILD_INHERITS);
+	    IToken string=new Token(IEbuildDocumentPartitioner.EBUILD_STRINGS);
 	    IPredicateRule[] pRules=new IPredicateRule[4];
 	    //rules[0]=new MultiLineRule("", cmt);
 	    pRules[0]=new EndOfLineRule("#", comment);
-	    pRules[1]=new MultiLineRule("src_","}",function);
-	    pRules[2]=new MultiLineRule("pkg_","}",function);
+	    pRules[1]=new MultiLineRule("src_","\n}",function);
+	    pRules[2]=new MultiLineRule("pkg_","\n}",function);
 	    pRules[3]=new EndOfLineRule("inherit",inherit);
+	    //pRules[4]=new MultiLineRule("\"","\"",string);
 	    //rules[2]=new MultiLineRule("\"", "\"", string,'\\');
 		
 		// rule for generic whitspaces
@@ -45,22 +53,44 @@ public class EbuildDocumentPartitionScanner extends RuleBasedPartitionScanner {
 	    
 		this.cScanner=null;
 		this.fScanner=null;
+		this.iScanner=null;
+		this.sScanner=null;
 		
 	    //return scanner;
 	}
+	private class StringScanner extends RuleBasedScanner {
+		StringScanner(EbuildColorProvider provider) {
+			IToken string =  new Token(new TextAttribute(provider.getColor(EbuildColorProvider.STRING)));
+			IRule[] rules = new IRule[] {new MultiLineRule( "\"","\"", string )};
+			this.setRules(rules);
+		}
+	}
 	private class CommentScanner extends RuleBasedScanner {
+		/**
+		 * This scanner works on comment-blocks outside of function-blocks (we have to handle comment blocks inside function-blocks
+		 * seperately).
+		 * @param provider, the EbuildColorProvider-object that allows us to access the necessary colors
+		 */
 		CommentScanner(EbuildColorProvider provider) {
 			IToken comment =  new Token(new TextAttribute(provider.getColor(EbuildColorProvider.EBUILD_COMMENT)));
 			IRule[] rules = new IRule[] {new EndOfLineRule( "#", comment )};
 			this.setRules(rules);
 		}
 	}
+	
 	private class EbuildFunctionScanner extends RuleBasedScanner {
+		/**
+		 * This constructor creates a EbuildFunctionScanner-object. This Method can be used to construct a code-scanner that is 
+		 * responsible for the correct handling of ebuild-function-blocks 
+		 * @param provider, the EbuildColorProvider-object that allows us to access the necessary colors
+		 */
 		EbuildFunctionScanner(EbuildColorProvider provider) {
 			IToken methods = new Token(new TextAttribute(provider.getColor(EbuildColorProvider.EBUILD_METHODS),new Color(Display.getCurrent(),new RGB(255,255,255)),1));
 			IToken buildtin_function = new Token(new TextAttribute(provider.getColor(EbuildColorProvider.EBUILD_BUILDTIN_FUNCTIONS),new Color(Display.getCurrent(),new RGB(255,255,255)),1));
 			IToken bash_keyword = new Token(new TextAttribute(provider.getColor(EbuildColorProvider.BASH_KEYWORDS),new Color(Display.getCurrent(),new RGB(255,255,255)),1));
 			IToken variable = new Token(new TextAttribute(provider.getColor(EbuildColorProvider.EBUILD_VARIABLES),new Color(Display.getCurrent(),new RGB(255,255,255)),1));
+			IToken string = new Token(new TextAttribute(provider.getColor(EbuildColorProvider.STRING)));
+			IToken comment =  new Token(new TextAttribute(provider.getColor(EbuildColorProvider.EBUILD_COMMENT)));
 			IToken other = new Token(new TextAttribute(provider.getColor(EbuildColorProvider.DEFAULT)));
 			WordRule wr = new WordRule(new EbuildWordDetector(),other);
 			for(int i=0; i < IEbuildSyntax.SYNTAX.getEBUILD_BUILDTIN_FUNCTIONS().length;i++){
@@ -72,7 +102,7 @@ public class EbuildDocumentPartitionScanner extends RuleBasedPartitionScanner {
 			for(int i=0; i < IEbuildSyntax.SYNTAX.getEBUILD_VARIABLES().length;i++){
 				wr.addWord(IEbuildSyntax.SYNTAX.getEBUILD_VARIABLES()[i], variable);
 			}//for
-			IRule[] rules = new IRule[] {new MultiLineRule("src_",")",methods),new MultiLineRule("pkg_",")",methods),wr};
+			IRule[] rules = new IRule[] {new SingleLineRule("src_",")",methods),new SingleLineRule("pkg_",")",methods),new MultiLineRule("\"","\"",string),new EndOfLineRule( "#", comment ),wr};
 			this.setRules(rules);			
 		}
 	}
@@ -100,5 +130,10 @@ public class EbuildDocumentPartitionScanner extends RuleBasedPartitionScanner {
 		if (this.iScanner==null)
 			this.iScanner=new EbuildInheritScanner(provider);
 		return this.iScanner;
+	}
+	public RuleBasedScanner getStringScanner(EbuildColorProvider provider) {
+		if (this.sScanner==null)
+			this.sScanner=new StringScanner(provider);
+		return this.sScanner;
 	}
 }

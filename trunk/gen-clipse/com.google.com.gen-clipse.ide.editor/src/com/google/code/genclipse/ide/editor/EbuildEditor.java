@@ -55,7 +55,7 @@ public class EbuildEditor extends TextEditor {
 			provider.connect(input);
 			FastPartitioner partitioner=new FastPartitioner(
 					EbuildEditor.scanner,
-					new String[]{IEbuildDocumentPartitioner.EBUILD_COMMENT,IEbuildDocumentPartitioner.EBUILD_FUNCTION,IEbuildDocumentPartitioner.EBUILD_INHERITS}
+					new String[]{IEbuildDocumentPartitioner.EBUILD_COMMENT,IEbuildDocumentPartitioner.EBUILD_FUNCTION,IEbuildDocumentPartitioner.EBUILD_INHERITS,IEbuildDocumentPartitioner.EBUILD_STRINGS}
 					);
 			partitioner.connect(provider.getDocument(input));
 			provider.getDocument(input).setDocumentPartitioner(partitioner);
