@@ -5,7 +5,7 @@ package com.google.code.genclipse.debug.core.launching;
  * This interface is just a 'marker' interface, containing String-Constants that
  * have to be shared throughout the whole GEclipse-application. 
  * @author Christoph
- *
+ * 
  */
 public interface EbuildDebuggingConstants {
 	
