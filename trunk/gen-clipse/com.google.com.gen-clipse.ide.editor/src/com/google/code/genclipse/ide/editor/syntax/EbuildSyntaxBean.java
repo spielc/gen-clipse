@@ -28,10 +28,17 @@ public class EbuildSyntaxBean {
 		"einstall", "die", "elog", "einfo", "eerror", "ewarn"};
 	
 	private Vector<String> eClasses;
+	private Vector<String> ebuildBuildinFunctions;
 	
+	public Vector<String> getEbuildBuildinFunctions() {
+		return ebuildBuildinFunctions;
+	}
+
 	public EbuildSyntaxBean() {
 		this.eClasses=new Vector<String>();
-		this.getEclasses();
+		this.ebuildBuildinFunctions=new Vector<String>();
+		this.initEclasses();
+		this.initEbuildBuildinFunctions();
 	}
 
 	public String[] getBASH_KEYWORDS() {
@@ -46,20 +53,21 @@ public class EbuildSyntaxBean {
 		return EBUILD_METHODES;
 	}
 
-	public String[] getEBUILD_BUILDTIN_FUNCTIONS() {
-		return EBUILD_BUILDTIN_FUNCTIONS;
-	}
-
 	public Vector<String> getEClasses() {
 		return eClasses;
 	}
 	
-	private void getEclasses() {
+	private void initEclasses() {
 		File f=new File("/usr/portage/eclass");
 		String[] eclasses=f.list(new EclassFilenameFilter());
 		for (String eclassFile:eclasses) {
 			eclassFile=eclassFile.substring(0, eclassFile.indexOf("."));
 			this.eClasses.add(eclassFile);
+		}
+	}
+	private void initEbuildBuildinFunctions() {
+		for (int i=0;i<this.EBUILD_BUILDTIN_FUNCTIONS.length;i++) {
+			this.ebuildBuildinFunctions.add(this.EBUILD_BUILDTIN_FUNCTIONS[i]);
 		}
 	}
 }

@@ -51,10 +51,10 @@ public class EbuildCodeScanner extends RuleBasedScanner implements
 			wr.addWord(SYNTAX.getEBUILD_VARIABLES()[i], variable);
 		}//for
 		
-		for(int i=0; i < SYNTAX.getEBUILD_BUILDTIN_FUNCTIONS().length;i++){
-			wr.addWord(SYNTAX.getEBUILD_BUILDTIN_FUNCTIONS()[i], buildtin_function);
-		}//for
-		
+		for (String buildin:SYNTAX.getEbuildBuildinFunctions()) {
+			wr.addWord(buildin, buildtin_function);
+		}
+				
 		for(int i=0; i < SYNTAX.getEBUILD_METHODES().length;i++){
 			wr.addWord(SYNTAX.getEBUILD_METHODES()[i], methodes);
 		}//for
