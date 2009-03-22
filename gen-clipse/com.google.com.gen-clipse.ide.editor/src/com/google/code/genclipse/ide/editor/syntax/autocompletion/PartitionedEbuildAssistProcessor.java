@@ -30,18 +30,18 @@ IContentAssistProcessor, IEbuildSyntax {
 			
 			ArrayList<ICompletionProposal> list = new ArrayList<ICompletionProposal>();
 			if (word!=null && partType.equals(IEbuildDocumentPartitioner.EBUILD_FUNCTION)) {
-				for(int i=0;i<SYNTAX.getEBUILD_BUILDTIN_FUNCTIONS().length;i++){
-					if(SYNTAX.getEBUILD_BUILDTIN_FUNCTIONS()[i].startsWith(word)){
+				for (String buildin:SYNTAX.getEbuildBuildinFunctions()) {
+					if (buildin.startsWith(word)) {
 						list.add(new CompletionProposal(
-								SYNTAX.getEBUILD_BUILDTIN_FUNCTIONS()[i],
+								buildin,
 								offset - word.length(),
 								word.length(),
-								SYNTAX.getEBUILD_BUILDTIN_FUNCTIONS()[i].length(),
+								buildin.length(),
 								null,
-								SYNTAX.getEBUILD_BUILDTIN_FUNCTIONS()[i],
+								buildin,
 								null,null));
 					}
-				}//for
+				}
 				for(int i=0;i<SYNTAX.getEBUILD_METHODES().length;i++){
 					if(SYNTAX.getEBUILD_METHODES()[i].startsWith(word)){
 						list.add(new CompletionProposal(

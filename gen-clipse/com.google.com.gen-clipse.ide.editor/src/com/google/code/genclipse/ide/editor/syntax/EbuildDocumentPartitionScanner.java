@@ -93,9 +93,9 @@ public class EbuildDocumentPartitionScanner extends RuleBasedPartitionScanner {
 			IToken comment =  new Token(new TextAttribute(provider.getColor(EbuildColorProvider.EBUILD_COMMENT)));
 			IToken other = new Token(new TextAttribute(provider.getColor(EbuildColorProvider.DEFAULT)));
 			WordRule wr = new WordRule(new EbuildWordDetector(),other);
-			for(int i=0; i < IEbuildSyntax.SYNTAX.getEBUILD_BUILDTIN_FUNCTIONS().length;i++){
-				wr.addWord(IEbuildSyntax.SYNTAX.getEBUILD_BUILDTIN_FUNCTIONS()[i], buildtin_function);
-			}//for
+			for (String buildin:IEbuildSyntax.SYNTAX.getEbuildBuildinFunctions()) {
+				wr.addWord(buildin, buildtin_function);
+			}
 			for(int i=0; i < IEbuildSyntax.SYNTAX.getBASH_KEYWORDS().length;i++){
 				wr.addWord(IEbuildSyntax.SYNTAX.getBASH_KEYWORDS()[i], bash_keyword);
 			}//for
