@@ -46,22 +46,22 @@ public class EbuildCodeScanner extends RuleBasedScanner implements
 		// keywords
 		
 		WordRule wr = new WordRule(new EbuildWordDetector(),other);
-				
-		for(int i=0; i < SYNTAX.getEBUILD_VARIABLES().length;i++){
-			wr.addWord(SYNTAX.getEBUILD_VARIABLES()[i], variable);
-		}//for
 		
+		for (String var:SYNTAX.getEbuildVariables()) {
+			wr.addWord(var, variable);
+		}
+				
 		for (String buildin:SYNTAX.getEbuildBuildinFunctions()) {
 			wr.addWord(buildin, buildtin_function);
 		}
-				
-		for(int i=0; i < SYNTAX.getEBUILD_METHODES().length;i++){
-			wr.addWord(SYNTAX.getEBUILD_METHODES()[i], methodes);
-		}//for
-
-		for(int i=0; i < SYNTAX.getBASH_KEYWORDS().length;i++){
-			wr.addWord(SYNTAX.getBASH_KEYWORDS()[i], bash_keyword);
-		}//for
+		
+		for (String method:SYNTAX.getEbuildMethods()) {
+			wr.addWord(method, methodes);
+		}
+		
+		for (String keyword:SYNTAX.getBashKeywords()) {
+			wr.addWord(keyword, bash_keyword);
+		}
 		
 		for (String eClass:SYNTAX.getEClasses()) {
 			wr.addWord(eClass, eclass);

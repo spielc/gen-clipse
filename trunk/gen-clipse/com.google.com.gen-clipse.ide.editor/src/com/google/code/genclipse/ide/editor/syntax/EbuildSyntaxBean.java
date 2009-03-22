@@ -29,7 +29,22 @@ public class EbuildSyntaxBean {
 	
 	private Vector<String> eClasses;
 	private Vector<String> ebuildBuildinFunctions;
+	private Vector<String> ebuildVariables;
+	private Vector<String> ebuildMethods;
+	private Vector<String> bashKeywords;
 	
+	public Vector<String> getBashKeywords() {
+		return bashKeywords;
+	}
+
+	public Vector<String> getEbuildMethods() {
+		return ebuildMethods;
+	}
+
+	public Vector<String> getEbuildVariables() {
+		return ebuildVariables;
+	}
+
 	public Vector<String> getEbuildBuildinFunctions() {
 		return ebuildBuildinFunctions;
 	}
@@ -37,11 +52,17 @@ public class EbuildSyntaxBean {
 	public EbuildSyntaxBean() {
 		this.eClasses=new Vector<String>();
 		this.ebuildBuildinFunctions=new Vector<String>();
+		this.ebuildVariables=new Vector<String>();
+		this.ebuildMethods=new Vector<String>();
+		this.bashKeywords=new Vector<String>();
 		this.initEclasses();
 		this.initEbuildBuildinFunctions();
+		this.initEbuildVariables();
+		this.initEbuildMethods();
+		this.initBashKeywords();
 	}
 
-	public String[] getBASH_KEYWORDS() {
+	/*public String[] getBASH_KEYWORDS() {
 		return BASH_KEYWORDS;
 	}
 
@@ -51,7 +72,7 @@ public class EbuildSyntaxBean {
 
 	public String[] getEBUILD_METHODES() {
 		return EBUILD_METHODES;
-	}
+	}*/
 
 	public Vector<String> getEClasses() {
 		return eClasses;
@@ -66,8 +87,23 @@ public class EbuildSyntaxBean {
 		}
 	}
 	private void initEbuildBuildinFunctions() {
-		for (int i=0;i<this.EBUILD_BUILDTIN_FUNCTIONS.length;i++) {
-			this.ebuildBuildinFunctions.add(this.EBUILD_BUILDTIN_FUNCTIONS[i]);
+		for (String buildin:this.EBUILD_BUILDTIN_FUNCTIONS) {
+			this.ebuildBuildinFunctions.add(buildin);
+		}
+	}
+	private void initEbuildVariables() {
+		for (String vars:this.EBUILD_VARIABLES) {
+			this.ebuildVariables.add(vars);
+		}
+	}
+	private void initEbuildMethods() {
+		for (String method:this.EBUILD_METHODES) {
+			this.ebuildMethods.add(method);
+		}
+	}
+	private void initBashKeywords() {
+		for (String keyword:this.BASH_KEYWORDS) {
+			this.bashKeywords.add(keyword);
 		}
 	}
 }
