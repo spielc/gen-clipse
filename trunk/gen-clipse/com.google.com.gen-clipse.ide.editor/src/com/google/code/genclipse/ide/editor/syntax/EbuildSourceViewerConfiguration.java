@@ -2,6 +2,7 @@ package com.google.code.genclipse.ide.editor.syntax;
 
 import com.google.code.genclipse.ide.editor.EbuildEditor;
 import com.google.code.genclipse.ide.editor.syntax.autocompletion.EbuildAssistProcessor;
+import com.google.code.genclipse.ide.editor.syntax.autocompletion.PartitionedEbuildAssistProcessor;
 
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.contentassist.ContentAssistant;
@@ -61,8 +62,11 @@ public class EbuildSourceViewerConfiguration extends SourceViewerConfiguration{
 	public IContentAssistant getContentAssistant(ISourceViewer sourceViewer) {
 		ContentAssistant assistant = new ContentAssistant();
 		assistant.enableAutoInsert(true);
-		EbuildAssistProcessor processor = new EbuildAssistProcessor();
-		assistant.setContentAssistProcessor(processor,IDocument.DEFAULT_CONTENT_TYPE);
+		//EbuildAssistProcessor processor = new EbuildAssistProcessor();
+		PartitionedEbuildAssistProcessor processor=new PartitionedEbuildAssistProcessor();
+		//assistant.setContentAssistProcessor(processor, contentType)
+		assistant.setContentAssistProcessor(processor,IEbuildDocumentPartitioner.EBUILD_FUNCTION);
+		assistant.setContentAssistProcessor(processor,IEbuildDocumentPartitioner.EBUILD_INHERITS);
 		assistant.install(sourceViewer);
 		
 		//IPreferenceStore store = Activator.getDefault().getPreferenceStore();
