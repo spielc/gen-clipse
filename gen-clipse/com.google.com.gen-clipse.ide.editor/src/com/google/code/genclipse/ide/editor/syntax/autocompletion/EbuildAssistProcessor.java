@@ -36,55 +36,42 @@ public class EbuildAssistProcessor implements IContentAssistProcessor, IEbuildSy
 							null,null));
 				}
 			}
-			for(int i=0;i<SYNTAX.getEBUILD_METHODES().length;i++){
-				if(SYNTAX.getEBUILD_METHODES()[i].startsWith(word)){
+			for (String method:SYNTAX.getEbuildMethods()) {
+				if (method.startsWith(word)) {
 					list.add(new CompletionProposal(
-							SYNTAX.getEBUILD_METHODES()[i]  + "(){\n\t\n}",
+							method,
 							offset - word.length(),
 							word.length(),
-							SYNTAX.getEBUILD_METHODES()[i].length() + 5,
+							method.length(),
 							null,
-							SYNTAX.getEBUILD_METHODES()[i],
+							method,
 							null,null));
 				}
-			}//for
-			for(int i=0;i<SYNTAX.getEBUILD_VARIABLES().length;i++){
-				if(SYNTAX.getEBUILD_VARIABLES()[i].startsWith(word)){
+			}
+			for (String var:SYNTAX.getEbuildVariables()) {
+				if (var.startsWith(word)) {
 					list.add(new CompletionProposal(
-							SYNTAX.getEBUILD_VARIABLES()[i] + " = \"\"",
+							var,
 							offset - word.length(),
 							word.length(),
-							SYNTAX.getEBUILD_VARIABLES()[i].length() + 4,
+							var.length(),
 							null,
-							SYNTAX.getEBUILD_VARIABLES()[i],
+							var,
 							null,null));
 				}
-			}//for
-			for(int i=0;i< SYNTAX.getBASH_KEYWORDS().length;i++){
-				if(SYNTAX.getBASH_KEYWORDS()[i].startsWith(word)){
-					if(SYNTAX.getBASH_KEYWORDS()[i].equals("if")){
-						list.add(new CompletionProposal(
-								SYNTAX.getBASH_KEYWORDS()[i] + " (); then",
-								offset - word.length(),
-								word.length(),
-								SYNTAX.getBASH_KEYWORDS()[i].length() + 2,
-								null,
-								SYNTAX.getBASH_KEYWORDS()[i],
-								null,null));
-					}
-					else{
-						list.add(new CompletionProposal(
-								SYNTAX.getBASH_KEYWORDS()[i],
-								offset - word.length(),
-								word.length(),
-								SYNTAX.getBASH_KEYWORDS()[i].length(),
-								null,
-								SYNTAX.getBASH_KEYWORDS()[i],
-								null,null));
-					}
-
+			}
+			for (String keyword:SYNTAX.getBashKeywords()) {
+				if (keyword.startsWith(word)) {
+					list.add(new CompletionProposal(
+							keyword,
+							offset - word.length(),
+							word.length(),
+							keyword.length(),
+							null,
+							keyword,
+							null,null));
 				}
-			}//for
+			}
 			for (String eClass:SYNTAX.getEClasses()) {
 				if (eClass.startsWith(word)) {
 					list.add(new CompletionProposal(

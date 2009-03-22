@@ -96,12 +96,15 @@ public class EbuildDocumentPartitionScanner extends RuleBasedPartitionScanner {
 			for (String buildin:IEbuildSyntax.SYNTAX.getEbuildBuildinFunctions()) {
 				wr.addWord(buildin, buildtin_function);
 			}
-			for(int i=0; i < IEbuildSyntax.SYNTAX.getBASH_KEYWORDS().length;i++){
-				wr.addWord(IEbuildSyntax.SYNTAX.getBASH_KEYWORDS()[i], bash_keyword);
-			}//for
-			for(int i=0; i < IEbuildSyntax.SYNTAX.getEBUILD_VARIABLES().length;i++){
-				wr.addWord(IEbuildSyntax.SYNTAX.getEBUILD_VARIABLES()[i], variable);
-			}//for
+			
+			for (String keyword:IEbuildSyntax.SYNTAX.getBashKeywords()) {
+				wr.addWord(keyword,bash_keyword);
+			}
+			
+			for (String var:IEbuildSyntax.SYNTAX.getEbuildVariables()) {
+				wr.addWord(var,variable);
+			}
+			
 			IRule[] rules = new IRule[] {new SingleLineRule("src_",")",methods),new SingleLineRule("pkg_",")",methods),new MultiLineRule("\"","\"",string),new EndOfLineRule( "#", comment ),wr};
 			this.setRules(rules);			
 		}
