@@ -15,7 +15,7 @@ public class EbuildProjectPlugin extends AbstractUIPlugin {
 	// The shared instance
 	private static EbuildProjectPlugin plugin;
 	
-	/**
+	/**  
 	 * The constructor
 	 */
 	public EbuildProjectPlugin() {
