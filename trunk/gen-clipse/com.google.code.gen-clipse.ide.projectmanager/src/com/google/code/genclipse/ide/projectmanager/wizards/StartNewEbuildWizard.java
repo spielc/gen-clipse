@@ -15,7 +15,7 @@ import org.eclipse.ui.wizards.newresource.BasicNewFileResourceWizard;
 import com.google.code.genclipse.ide.projectmanager.wizards.util.Helper;
 
 /**
- * This class is used to capsulate the use of a NewEbuildWizard!
+ * This class is used to capsulate the use of a NewEbuildWizard! 
  * @author Christoph
  *
  */
