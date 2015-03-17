@@ -1,0 +1,1 @@
+gen-clipse is a ebuild-editor for Eclipse. It's main features are syntax-highlighting, code-completion, ebuild-project-management and using eclipse to 'debug' your ebuild using the ebuild-application provided by the GNU/Linux-distribution Gentoo
